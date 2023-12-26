@@ -1,7 +1,7 @@
 {
 	"name": "@svelte.codes/modal-manager",
 	"version": "0.0.3",
-	"svelte": "./index.js",
+	"svelte": "./dist/index.js",
 	"type": "module",
 	"scripts": {
 		"dev": "vite",
@@ -28,16 +28,12 @@
 		"vite": "^5.0.8",
 		"vite-plugin-dts": "^3.6.4"
 	},
-	"main": "./index.js",
-	"module": "./index.js",
-	"types": "./index.d.ts",
+	"main": "./dist/index.js",
+	"module": "./dist/index.js",
+	"types": "./dist/index.d.ts",
 	"exports": {
 		".": {
-			"import": "./index.js"
-		},
-		"./DefaultOverlay.svelte": {
-			"types": "./DefaultOverlay.svelte.d.ts",
-			"svelte": "./DefaultOverlay.svelte"
+			"import": "./dist/index.js"
 		}
 	}
 }

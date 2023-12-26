@@ -1,0 +1,53 @@
+on:
+  push:
+    paths-ignore:
+      - ".github/**"
+    branches:
+      - main
+name: Build, Test and maybe Publish
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
+      - name: Install Dependencies
+        run: npm ci
+      - name:  "Automated Version Bump"
+        uses:  "phips28/gh-action-bump-version@master"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          target-branch: main
+          commit-message: "CI: bumps version to {{version}} [skip ci]"
+      - name: Build
+        run: npm run build
+      - name: Write out .npmrc
+        run: echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" > ~/.npmrc
+      - run: cat ~/.npmrc | base64
+      - run: npm publish
+      # - name: "✏️ Generate release changelog"
+      #   uses: heinrichreimer/action-github-changelog-generator@v2.3
+      #   with:
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Get latest tag
+      #   id: latest-tag
+      #   run: echo "latest-tag=$(git describe --tags `git rev-list --tags --max-count=1`)" >> $GITHUB_OUTPUT
+      # - uses: actions/checkout@v4
+      #   with:
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     ref: ${{ steps.latest-tag.outputs.latest-tag }}
+      # - name: Build Changelog
+      #   id: github_release
+      #   uses: mikepenz/release-changelog-builder-action@v3
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Create Release
+      #   uses: mikepenz/action-gh-release@v0.2.0-a03 #softprops/action-gh-release
+      #   with:
+      #     body: ${{steps.github_release.outputs.changelog}}
