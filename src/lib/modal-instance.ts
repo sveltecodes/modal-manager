@@ -1,4 +1,4 @@
-import type { ModalConfig, ModalManager } from "..";
+import type { ModalConfig, ModalManager } from ".";
 
 export class ModalInstance {
 	public manager: ModalManager;
