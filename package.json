@@ -1,6 +1,5 @@
 {
 	"name": "@svelte.codes/modal-manager",
-	"private": true,
 	"version": "0.0.0",
 	"svelte": "./dist/index.js",
 	"type": "module",
