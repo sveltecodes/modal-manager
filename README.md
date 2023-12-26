@@ -19,7 +19,7 @@ npm install @svelte.codes/modal-manager
 
 ### Manager component
 
-Properties for `ModalConfig`:
+#### `ModalConfig` Properties
 
 | name                   | default  | description                   |
 |------------------------|----------|-------------------------------|
@@ -30,6 +30,9 @@ Properties for `ModalConfig`:
 | `closeOnEscape`        | optional | Close modal on escape key.    |
 | `closeOnExternalClick` | optional | Close modal on outside click. |
 
+#### Opening a modal
+
+The `manager.open()` method takes a `ModalConfig` object as an argument (see above):
 
 ```ts
 <script lang="ts">
