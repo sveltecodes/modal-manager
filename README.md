@@ -19,6 +19,18 @@ npm install @svelte.codes/modal-manager
 
 ### Manager component
 
+Properties for `ModalConfig`:
+
+| name                   | default  | description                   |
+|------------------------|----------|-------------------------------|
+| `name`                 | required | The name of the modal.        |
+| `classes`              | optional | Extra css classes to add.     |
+| `component`            | required | Svelte component reference.   |
+| `closeIcon`            | optional | Show a close icon, top right. |
+| `closeOnEscape`        | optional | Close modal on escape key.    |
+| `closeOnExternalClick` | optional | Close modal on outside click. |
+
+
 ```ts
 <script lang="ts">
   import { ModalManager } from "@svelte.codes/modal-manager";
