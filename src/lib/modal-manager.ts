@@ -1,16 +1,24 @@
-import DefaultOverlay from "./DefaultOverlay.svelte";
+import DefaultOverlay from "./default-overlay.svelte";
 import type { ModalConfig } from "./modal-config";
+import { ModalInstance } from "./modal-instance";
 
 export class ModalManager {
+	public modals: { [name: string]: ModalInstance } = {};
+
 	public open(config: ModalConfig, props?: any) {
-		const a = new DefaultOverlay({
+		this.modals[config.name] = new ModalInstance(config);
+		this.modals[config.name].manager = this;
+
+		new DefaultOverlay({
 			target: document.body,
 			props: {
-				component: config.component
+				instance: this.modals[config.name]
 			}
 		});
-		console.log(a);
-		console.log(1212);
+	}
+
+	public close(name: string) {
+		this.modals[name].element.parentElement.removeChild(this.modals[name].element);
+		delete this.modals[name];
 	}
 }
-export const modalManager = new ModalManager();
