@@ -1,0 +1,17 @@
+{
+	"name": "@svelte.codes/modal-manager",
+	"version": "0.0.10",
+	"svelte": "./index.js",
+	"type": "module",
+	"main": "./index.js",
+	"module": "./index.js",
+	"types": "./index.d.ts",
+	"exports": {
+		".": {
+			"import": "./index.js"
+		}
+	},
+	"peerDependencies": {
+		"rxjs": "^7.8.1"
+	}
+}
