@@ -1,6 +1,6 @@
 {
 	"name": "@svelte.codes/modal-manager",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"svelte": "./index.js",
 	"type": "module",
 	"scripts": {
