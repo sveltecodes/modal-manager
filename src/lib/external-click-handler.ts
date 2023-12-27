@@ -22,7 +22,6 @@ export const externalClickHandler = (child: HTMLElement) => {
 	// Return a function that removes the event listener.
 	return {
 		destroy() {
-			console.log("destroy");
 			document.removeEventListener("click", clicked, true);
 		}
 	};
