@@ -10,6 +10,7 @@ export const externalClickHandler = (child: HTMLElement) => {
 	// Determine if clicked element is outside the passed node or not.
 	const clicked = (event: any) => {
 		if (child && !child.contains(event.target) && event.srcElement.getAttribute("data-select-item") != "") {
+			console.log(event);
 			child.dispatchEvent(new CustomEvent("blur", { detail: event }));
 		}
 	};
