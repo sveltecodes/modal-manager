@@ -14,7 +14,8 @@
 
 	const dispatch = createEventDispatcher<Record<keyof $$Events, any>>();
 
-	export const close = () => {
+	export const close = (e: { e: PointerEvent; child: HTMLElement }) => {
+		console.log(e);
 		dispatch("close");
 		instance.overlay.$destroy();
 	};
