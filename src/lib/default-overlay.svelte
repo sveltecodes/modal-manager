@@ -18,7 +18,7 @@
 	});
 </script>
 
-<div bind:this={ref} class="backdrop-blur-sm absolute top-0 bottom-0 left-0 right-0 flex justify-center items-center {instance.config.classes}">
+<div bind:this={ref} class="backdrop-blur-sm absolute w-full h-full top-0 bottom-0 left-0 right-0 flex justify-center items-center {instance.config.classes}">
 	<div use:externalClickHandler on:externalClickEvent={() => dispatch("blur")}>
 		<svelte:component this={instance.config.component} {instance} />
 	</div>
