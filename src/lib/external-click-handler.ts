@@ -9,7 +9,7 @@
 export const externalClickHandler = (child: HTMLElement) => {
 	// Determine if clicked element is outside the passed node or not.
 	const clicked = (event: any) => {
-		if (child && !child.contains(event.target) && !event.defaultPrevented) {
+		if (child && !child.contains(event.target) && event.srcElement.localName !== "button" && event.srcElement.getAttribute("data-select-item") != "") {
 			child.dispatchEvent(new CustomEvent("externalClickEvent", { detail: event }));
 		}
 	};
@@ -22,6 +22,7 @@ export const externalClickHandler = (child: HTMLElement) => {
 	// Return a function that removes the event listener.
 	return {
 		destroy() {
+			console.log("destroy");
 			document.removeEventListener("click", clicked, true);
 		}
 	};
