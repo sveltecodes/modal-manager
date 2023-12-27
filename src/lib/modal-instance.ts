@@ -1,13 +1,13 @@
 import type { ModalConfig, ModalManager } from ".";
 import type DefaultOverlay from "./default-overlay.svelte";
 
-export class ModalInstance {
+export class ModalInstance<T> {
 	public manager: ModalManager;
-	public config: ModalConfig;
+	public config: ModalConfig<T>;
 	public element?: HTMLElement;
 	public overlay: DefaultOverlay;
 
-	public constructor(config: ModalConfig) {
+	public constructor(config: ModalConfig<T>) {
 		this.config = config;
 	}
 }

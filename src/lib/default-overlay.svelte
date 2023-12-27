@@ -3,7 +3,7 @@
 	import { externalClickHandler } from "./external-click-handler";
 	import type { ModalInstance } from "./modal-instance";
 
-	export let instance: ModalInstance;
+	export let instance: ModalInstance<any>;
 
 	let ref: HTMLElement;
 

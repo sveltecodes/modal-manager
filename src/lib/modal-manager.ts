@@ -3,12 +3,11 @@ import type { ModalConfig } from "./modal-config";
 import { ModalInstance } from "./modal-instance";
 
 export class ModalManager {
-	public modals: { [name: string]: ModalInstance } = {};
+	public modals: { [name: string]: ModalInstance<any> } = {};
 
-	public open(config: ModalConfig, props?: any) {
+	public open(config: ModalConfig<any>, props?: any) {
 		this.modals[config.name] = new ModalInstance(config);
 		this.modals[config.name].manager = this;
-
 		this.modals[config.name].overlay = new DefaultOverlay({
 			target: document.body,
 			props: {
