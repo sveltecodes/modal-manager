@@ -1,7 +1,7 @@
 import type { ComponentType } from "svelte";
 
 export class ModalConfig<T> {
-	public name: string;
+	public id: string = Math.random().toString(6);
 	public classes?: string;
 	public component: ComponentType;
 	public closeIcon?: boolean;
