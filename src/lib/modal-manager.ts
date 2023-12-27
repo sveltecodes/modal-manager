@@ -9,7 +9,7 @@ export class ModalManager {
 		this.modals[config.name] = new ModalInstance(config);
 		this.modals[config.name].manager = this;
 
-		new DefaultOverlay({
+		this.modals[config.name].overlay = new DefaultOverlay({
 			target: document.body,
 			props: {
 				instance: this.modals[config.name]
@@ -18,7 +18,7 @@ export class ModalManager {
 	}
 
 	public close(name: string) {
-		this.modals[name].element.parentElement.removeChild(this.modals[name].element);
+		this.modals[name].overlay.close();
 		delete this.modals[name];
 	}
 }
