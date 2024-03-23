@@ -20,4 +20,12 @@ export class ModalManager {
 		this.modals[id].overlay.$destroy();
 		delete this.modals[id];
 	}
+
+	public show(id: string) {
+		this.modals[id].element.style.display = "block";
+	}
+
+	public hide(id: string) {
+		this.modals[id].element.style.display = "none";
+	}
 }
