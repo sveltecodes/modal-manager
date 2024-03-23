@@ -22,10 +22,10 @@ export class ModalManager {
 	}
 
 	public show(id: string) {
-		this.modals[id].element.style.display = "block";
+		this.modals[id].overlay.style.display = "block";
 	}
 
 	public hide(id: string) {
-		this.modals[id].element.style.display = "none";
+		this.modals[id].overlay.style.display = "none";
 	}
 }
