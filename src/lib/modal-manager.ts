@@ -1,6 +1,7 @@
 import DefaultOverlay from "./default-overlay.svelte";
 import type { ModalConfig } from "./modal-config";
 import { ModalInstance } from "./modal-instance";
+import { visible } from "./store";
 
 export class ModalManager {
 	public modals: { [name: string]: ModalInstance<any> } = {};
@@ -22,10 +23,10 @@ export class ModalManager {
 	}
 
 	public show(id: string) {
-		this.modals[id].overlay.style.display = "block";
+		visible.set(true);
 	}
 
 	public hide(id: string) {
-		this.modals[id].overlay.style.display = "none";
+		visible.set(false);
 	}
 }
