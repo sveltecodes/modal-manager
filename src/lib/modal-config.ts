@@ -1,9 +1,7 @@
-import type { ComponentType } from "svelte";
-
 export class ModalConfig<T> {
 	public id: string = Math.random().toString(6);
 	public classes?: string;
-	public component: ComponentType;
+	public component: any;
 	public closeIcon?: boolean;
 	public closeOnEscape?: boolean;
 	public closeOnExternalClick?: boolean;

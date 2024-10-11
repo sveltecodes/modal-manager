@@ -1,9 +1,12 @@
 <script lang="ts">
     import { createEventDispatcher, onDestroy, onMount } from 'svelte';
     import type { ModalInstance } from './modal-instance';
-    import { visible } from './store';
 
-    export let instance: ModalInstance<any>;
+    interface Props {
+        instance: ModalInstance<any>;
+    }
+
+    let { instance = $bindable() }: Props = $props();
 
     interface $$Events {
         close: CustomEvent<string>;
@@ -19,7 +22,7 @@
         document.removeEventListener('click', handleClick, true);
     });
 
-    let ref: HTMLElement;
+    let ref: HTMLElement = $state();
 
     const dispatch = createEventDispatcher<Record<keyof $$Events, any>>();
 
@@ -33,12 +36,8 @@
     document.addEventListener('click', handleClick, true);
 </script>
 
-{#if $visible}
-    <div bind:this={ref} class="modal-overlay absolute bottom-0 left-0 right-0 top-0 flex h-full w-full items-center justify-center bg-black/50 backdrop-blur-sm {instance.config.classes}">
-        <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <!-- svelte-ignore a11y-no-static-element-interactions -->
-        <div on:click={handleClick} on:blur={close} class="modal-content">
-            <svelte:component this={instance.config.component} {instance} />
-        </div>
+<div bind:this={ref} class="modal-overlay absolute bottom-0 left-0 right-0 top-0 flex h-full w-full items-center justify-center bg-black/50 backdrop-blur-sm transition-all duration-500 {instance.config.classes}">
+    <div onclick={handleClick} onblur={close} class="modal-content">
+        <instance.config.component {instance} />
     </div>
-{/if}
+</div>

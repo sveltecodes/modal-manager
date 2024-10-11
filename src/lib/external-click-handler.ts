@@ -1,5 +1,5 @@
 import { ModalInstance } from "./modal-instance";
-const findAncestor = (el, sel) => {
+const findAncestor = (el: any, sel: any) => {
 	while ((el = el.parentElement) && !(el.matches || el.matchesSelector).call(el, sel));
 	return el;
 };

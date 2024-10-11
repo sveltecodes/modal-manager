@@ -1,15 +1,15 @@
+import { mount, unmount } from "svelte";
 import DefaultOverlay from "./default-overlay.svelte";
 import type { ModalConfig } from "./modal-config";
 import { ModalInstance } from "./modal-instance";
 import { visible } from "./store";
-
 export class ModalManager {
 	public modals: { [name: string]: ModalInstance<any> } = {};
 
 	public open(config: ModalConfig<any>, props?: any) {
 		this.modals[config.id] = new ModalInstance(config);
 		this.modals[config.id].manager = this;
-		this.modals[config.id].overlay = new DefaultOverlay({
+		this.modals[config.id].overlay = mount(DefaultOverlay, {
 			target: document.body,
 			props: {
 				instance: this.modals[config.id]
@@ -18,7 +18,8 @@ export class ModalManager {
 	}
 
 	public close(id: string) {
-		this.modals[id].overlay.$destroy();
+		unmount(this.modals[id].overlay);
+		unmount(this.modals[id].overlay?.instance);
 		delete this.modals[id];
 	}
 
